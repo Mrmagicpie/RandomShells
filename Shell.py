@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, asyncio, sys
+import os, asyncio, sys, signal
 
 class ReloadItHoe(Exception): pass
 class GetMeOutOfHereBitch(Exception): pass
@@ -9,6 +9,10 @@ class shell:
         self.version = "0.1"
         self.SHELL = "change me if you want idc"
         self.reloaded = 0
+
+    def badboi(signum, frame):
+        print("\nYou think it's that easy? Lmfao gj\n")
+    signal.signal(signal.SIGTSTP, badboi)
 
     async def command_handler(self, command = None):
         if command is None or command == "\n" or command == " ":
@@ -35,7 +39,8 @@ class shell:
                 except:
                     pass
                 command = input(self.SHELL + ": $ ")
-                if command.lower() == "exit" or command.lower() == "exit()":
+                # if command.lower() == "exit" or command.lower() == "exit()":
+                if command.lower() in ["exit", "exit()", "quit()", "os._exit"]:
                     print("\nYou think it's that easy? Lmfao gj\n")
                 else:
                     await self.command_handler(command=command)
