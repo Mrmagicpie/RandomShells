@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+CSharpShell/CSharpShell.sln.DotSettings.user
